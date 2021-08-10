@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Dashboard</h1>
+
+    <div class="row">
+        <div class="col-md-2">
+            <div class="card border-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">Clientes Cadastrados</div>
+                <div class="card-body text-dark">
+                    <h2>5</h2>
+                    <a href="">
+                        <i class="fa fa-eye"></i> Visualizar clientes
+                    </a><br>
+                    <a href=""><i class="fa fa-user"></i> Adicionar cliente</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-2">
+            <div class="card border-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">Testes realizados</div>
+                <div class="card-body text-dark">
+                    <h2>5</h2>
+                    <a href="">
+                        <i class="fa fa-eye"></i> Visualizar testes
+                    </a><br>
+                    <a href=""><i class="fas fa-weight"></i> Adicionar teste</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card mb-4 ">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Meus top 5 clientes
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF/CNPJ</th>
+                        <th>Estado/Cidade</th>
+                        <th>Último teste</th>
+                        <th>Produto</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF/CNPJ</th>
+                        <th>Estado/Cidade</th>
+                        <th>Último teste</th>
+                        <th>Produto</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>Cliente 1</td>
+                        <td>213214565</td>
+                        <td>Florianópolis, Santa Catarina</td>
+                        <td>25/04/2021</td>
+                        <td>Produto X</td>
+                    </tr>
+                    <tr>
+                        <td>Cliente 1</td>
+                        <td>213214565</td>
+                        <td>Florianópolis, Santa Catarina</td>
+                        <td>25/04/2021</td>
+                        <td>Produto X</td>
+                    </tr>
+                    <tr>
+                        <td>Cliente 1</td>
+                        <td>213214565</td>
+                        <td>Florianópolis, Santa Catarina</td>
+                        <td>25/04/2021</td>
+                        <td>Produto X</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
