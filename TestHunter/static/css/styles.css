@@ -61,6 +61,7 @@
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
   --bs-body-bg: #fff;
+  --bs-dark-blue: #212529;
 }
 
 *,
@@ -7812,6 +7813,11 @@ textarea.form-control-lg {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
 }
+
+.bg-login {
+  background-color: var(--bs-dark-blue) !important;
+}
+
 
 .bg-secondary {
   --bs-bg-opacity: 1;
