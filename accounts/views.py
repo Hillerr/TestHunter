@@ -1,11 +1,32 @@
+from django.contrib import auth
 from accounts.models import Account
 from accounts.forms import RegistrationForm
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth import authenticate
+from client.models import Client
 
 # Create your views here.
 def login(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(email=email, password=password)
+
+        if user is not None:
+
+            # Get user params
+
+            auth.login(request, user)
+
+            return redirect('dashboard')
+
+        else:
+            messages.error(request, 'Email ou senha incorretos')
+            return redirect('login')
+
+
     return render(request, 'accounts/login.html')
 
 
@@ -39,9 +60,6 @@ def register(request):
             messages.success(request, "Perfil criado com sucesso")
             return redirect('login')
 
-        else:
-            print('not valid form', reg_form)
-
     else:
         reg_form = RegistrationForm()
 
@@ -54,4 +72,17 @@ def register(request):
 
 @login_required(login_url='login')
 def dashboard(request):
-    return 
+    clients = None
+    clients_count = 0
+
+    if request.user.is_authenticated:
+        user = request.user
+        clients = Client.objects.filter(user_id=user.id)
+        clients_count = clients.count()
+    
+    context = {
+        'clients': clients,
+        'clients_count': clients_count
+    }
+
+    return render(request, 'accounts/dashboard.html', context)

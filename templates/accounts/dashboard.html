@@ -8,7 +8,7 @@
 
     <div class="row">
         <div class="col-md-2">
-            <div class="card border-dark mb-5" style="max-width: 18rem;">
+            <div class="card border-dark shadow mb-5" style="max-width: 18rem;">
                 <div class="card-header">Clientes Cadastrados</div>
                 <div class="card-body text-dark">
                     <h2>5</h2>
@@ -21,7 +21,7 @@
 
         </div>
         <div class="col-md-2">
-            <div class="card border-dark mb-5" style="max-width: 18rem;">
+            <div class="card border-dark shadow mb-5" style="max-width: 18rem;">
                 <div class="card-header">Testes realizados</div>
                 <div class="card-body text-dark">
                     <h2>5</h2>
@@ -35,53 +35,44 @@
     </div>
 
 
-    <div class="card mb-5 ">
+    <div class="card border-dark shadow mb-5">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Meus top 5 clientes
+            Meus clientes
         </div>
         <div class="card-body">
             <table id="datatablesSimple">
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>CPF/CNPJ</th>
-                        <th>Estado/Cidade</th>
-                        <th>Último teste</th>
-                        <th>Produto</th>
+                        <th>Tipo de cliente</th>
+                        <th>Estado</th>
+                        <th>Cidade</th>
+                        <th>Email</th>
+                        <th>Nota</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>Nome</th>
-                        <th>CPF/CNPJ</th>
-                        <th>Estado/Cidade</th>
-                        <th>Último teste</th>
-                        <th>Produto</th>
+                        <th>Tipo de cliente</th>
+                        <th>Estado</th>
+                        <th>Cidade</th>
+                        <th>Email</th>
+                        <th>Nota</th>
                     </tr>
                 </tfoot>
                 <tbody>
+                    {% for client in clients %}
                     <tr>
-                        <td>Cliente 1</td>
-                        <td>213214565</td>
-                        <td>Florianópolis, Santa Catarina</td>
-                        <td>25/04/2021</td>
-                        <td>Produto X</td>
+                        <th scope="row"><a href="{% url 'client_detail' client.id %}">{{client.name}}</a></td>
+                        <td>{{client.business}}</td>
+                        <td>{{client.state}}
+                        <td>{{client.city}}</td>
+                        <td>{{client.email}}</td>
+                        <td>{{client.grade}}</td>
                     </tr>
-                    <tr>
-                        <td>Cliente 1</td>
-                        <td>213214565</td>
-                        <td>Florianópolis, Santa Catarina</td>
-                        <td>25/04/2021</td>
-                        <td>Produto X</td>
-                    </tr>
-                    <tr>
-                        <td>Cliente 1</td>
-                        <td>213214565</td>
-                        <td>Florianópolis, Santa Catarina</td>
-                        <td>25/04/2021</td>
-                        <td>Produto X</td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>

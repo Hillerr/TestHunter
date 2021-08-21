@@ -3,7 +3,7 @@
     {% for message in messages %}
     <div class="container" id="message">
         <div {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %} role="alert">
-            <button type="button" class="btn-close" data-dismiss='alert'></button>
+            <a href="" class="btn-close" data-dismiss='alert' aria-label="close">&times;</a>
             {{ message }}
     </div>
     </div>

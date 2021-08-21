@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts'
+    'accounts',
+    'client',
+    'tests'
 ]
 
 MIDDLEWARE = [
@@ -133,10 +135,10 @@ from django.contrib.messages import constants as messages
 
 
 MESSAGE_TAGS = {
-        messages.DEBUG: 'alert-secondary',
+        messages.DEBUG: 'secondary',
         messages.INFO: 'info',
         messages.SUCCESS: 'success',
-        messages.WARNING: 'alert-warning',
+        messages.WARNING: 'warning',
         messages.ERROR: 'danger',
  }
 

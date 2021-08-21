@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-11">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <header class="card-header">
+                    <strong class="d-inline-block mr-3">Novo Cliente</strong>
+                        {% include 'includes/alerts.html' %}
+                            {% if client_form.errors %}
+                                {% for field in client_form %}
+                                    {% for error in field.errors %}
+                                        <p> {{ error }} </p>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                </header>
+                <div class="card-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            
+                            <form action="{% url 'new_client' %}" method="post">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="form-group col-md-6 mb-3">
+                                        <label>Nome</label>
+                                        {{client_form.name}}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-3">
+                                        <label>Telefone</label>
+                                        {{client_form.phone_number}}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-12 mb-3">
+                                        <label>Email</label>
+                                        {{client_form.email}}
+                                    </div>
+                                    
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="form-group col-md-6 mb-1">
+                                        <label>CPF/CNPJ</label>
+                                        {{client_form.code}}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-1">
+                                        <label>Tipo de cliente</label>
+                                        {{client_form.business}}
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="form-group col-md-6 mb-1">
+                                        <label>Estado</label>
+                                        {{client_form.state}}
+                                    </div>
+                                    <div class="form-group col-md-6 mb-1">
+                                        <label>Cidade</label>
+                                        {{client_form.city}}
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <!--<a class="small" href="password.html">Forgot Password?</a>-->
+                                            <button type="submit" class="btn btn-primary btn-block">Cadastrar
+                                                cliente</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div> <!-- row.// -->
+                </div> <!-- card-body .// -->
+            </div> <!-- order-group.// -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}
