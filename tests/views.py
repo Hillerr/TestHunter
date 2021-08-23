@@ -10,6 +10,7 @@ import datetime
 def new_test(request):
     if request.method == 'POST':
         test = Test()
+        test.user = request.user
         test.product_tested = request.POST['product_tested']
         client_code = request.POST['client_code']
 

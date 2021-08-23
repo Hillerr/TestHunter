@@ -77,6 +77,37 @@
             </table>
         </div>
     </div>
+
+    <div class="card border-dark shadow mb-5">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Meus testes
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Cliente</th>
+                        <th>Data de início</th>
+                        <th>Data de finalização</th>
+                        <th>Nota</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for test in tests %}
+                    <tr>
+                        <th scope="row"><a href="#">{{test.product_tested}}</a></td>
+                        <td>{{test.client}}
+                        <td>{{test.start_date}}</td>
+                        <td>{{test.end_date}}</td>
+                        <td>{{test.final_grade}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 

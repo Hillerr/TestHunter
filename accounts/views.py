@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from client.models import Client
+from tests.models import Test
 
 # Create your views here.
 def login(request):
@@ -32,7 +33,8 @@ def login(request):
 
 @login_required(login_url='login')
 def logout(request):
-    return 
+    auth.logout(request)
+    return redirect ('login') 
 
 
 def register(request):
@@ -79,10 +81,14 @@ def dashboard(request):
         user = request.user
         clients = Client.objects.filter(user_id=user.id)
         clients_count = clients.count()
+
+        tests = Test.objects.filter(user_id=user.id)
+        print(tests.count())
     
     context = {
         'clients': clients,
-        'clients_count': clients_count
+        'clients_count': clients_count,
+        'tests': tests
     }
 
     return render(request, 'accounts/dashboard.html', context)
