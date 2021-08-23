@@ -64,10 +64,10 @@ def new_client(request):
     
     
 def client_detail(request, client_id):
-    client_profile = Client.objects.get(client_id=client_id)
+    client_profile = Client.objects.get(id=client_id)
 
     context = {
         'client': client_profile
     }
 
-    return render(request, 'client/client-detail', context)
+    return render(request, 'client/client-detail.html', context)
