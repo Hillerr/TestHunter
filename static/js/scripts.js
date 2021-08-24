@@ -24,3 +24,8 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+function update_grade(range_id, value_id) {
+    document.getElementById(value_id).innerHTML = document.getElementById(range_id).value;
+}
+

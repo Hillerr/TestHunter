@@ -20,7 +20,7 @@ class Client(models.Model):
     phone_number = models.CharField(verbose_name="Telefone", max_length=20)
     state = models.CharField(verbose_name="Estado", max_length=50)
     city = models.CharField(verbose_name="Cidade", max_length=50)
-    grade = models.DecimalField(verbose_name="Nota", max_digits=3, decimal_places=2, blank=True, null=True)
+    grade = models.FloatField(verbose_name="Nota", default=5, max_length=3)
     code = models.CharField(verbose_name="CPF ou CNPJ", max_length=15, unique=True)
     created_at = models.DateTimeField(verbose_name="Data de cadastro", auto_now=True)
     last_update = models.DateTimeField(verbose_name="Última atualização", auto_now_add=True)

@@ -22,6 +22,8 @@ def new_test(request):
 
         test.client = client
 
+        
+
         try:
             start_date = request.POST['start_date']
             end_date = request.POST['end_date']
@@ -64,10 +66,33 @@ def new_test(request):
         test.tr_comments = request.POST['tr_comments']
         test.fb_comments = request.POST['fb_comments']
 
-        test.final_grade = (tk_grade + tr_grade + fb_grade)/3
+        final_grade = (tk_grade + tr_grade + fb_grade)/3
+        test.final_grade = round(final_grade, 2)
         test.final_comments = request.POST['final_comments']
         test.contract_id = request.POST['contract_id']
 
+        tests_cl = Test.objects.filter(client_id=client).order_by('-created_at')
+        n_tests = tests_cl.count()
+        client_grade = 0
+
+        if n_tests >= 2: 
+            print(n_tests)
+            last_tests = tests_cl[:2]
+
+            for i in last_tests:
+                print(i.product_tested)
+                client_grade += i.final_grade
+                print(client_grade)
+
+            client.grade =  (client_grade + final_grade)/3
+        else:
+            for i in tests_cl:
+                client_grade += i.final_grade
+
+            client_grade = (client_grade+final_grade)/(len(tests_cl)+1)
+
+        client.grade = round(client_grade, 2)
+        client.save()
         test.save()
 
         messages.success(request, 'Teste cadastrado com sucesso')

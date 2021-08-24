@@ -17,13 +17,13 @@ class Test(models.Model):
     end_date = models.DateField(verbose_name='Data de finalização', blank=True, null=True)
     technician = models.CharField(verbose_name="Nome do instalador/técnico", max_length=30, blank=True)
     contract_id = models.CharField(verbose_name="Código do contrato", max_length=50, blank=True)
-    tk_grade = models.DecimalField(verbose_name="Nota do conhecimento técnico", max_digits=3, decimal_places=2, blank=True, default=5)
+    tk_grade = models.FloatField(verbose_name="Nota do conhecimento técnico", default=5)
     tk_comments = models.TextField(verbose_name="Comentário sobre conhecimento técnico", max_length=1000, blank=True)
-    tr_grade = models.DecimalField(verbose_name="Nota do tempo de resposta", max_digits=3, decimal_places=2, blank=True, default=5)
+    tr_grade = models.FloatField(verbose_name="Nota do tempo de resposta", default=5)
     tr_comments = models.TextField(verbose_name="Comentário sobre o tempo de resposta", max_length=1000, blank=True)
-    fb_grade = models.DecimalField(verbose_name="Nota do feedback que o cliente forneceu", max_digits=3, decimal_places=2, blank=True, default=5)
+    fb_grade = models.FloatField(verbose_name="Nota do feedback que o cliente forneceu", default=5)
     fb_comments = models.TextField(verbose_name="Comentário sobre o feedback que o cliente forneceu", max_length=1000, blank=True)
-    final_grade = models.DecimalField(verbose_name="Nota final", max_digits=3, decimal_places=2, blank=True, default=5)
+    final_grade = models.FloatField(verbose_name="Nota final", default=5)
     final_comments = models.TextField(verbose_name="Comentários finais", max_length=300, blank=True) 
 
     def __str__(self) -> str:
