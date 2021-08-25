@@ -2,6 +2,11 @@ from django.db import models
 from accounts.models import Account
 from client.models import Client
 
+test_status = (
+    ('Finalizado', 'Finalizado'),
+    ('Em andamento', 'Em andamento')
+)
+
 
 # Create your models here.
 class Test(models.Model):
@@ -17,6 +22,7 @@ class Test(models.Model):
     end_date = models.DateField(verbose_name='Data de finalização', blank=True, null=True)
     technician = models.CharField(verbose_name="Nome do instalador/técnico", max_length=30, blank=True)
     contract_id = models.CharField(verbose_name="Código do contrato", max_length=50, blank=True)
+    status = models.CharField(verbose_name="Status", blank=True, choices=test_status, max_length=20, default='Em andamento')
     tk_grade = models.FloatField(verbose_name="Nota do conhecimento técnico", default=5)
     tk_comments = models.TextField(verbose_name="Comentário sobre conhecimento técnico", max_length=1000, blank=True)
     tr_grade = models.FloatField(verbose_name="Nota do tempo de resposta", default=5)

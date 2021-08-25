@@ -2,82 +2,105 @@
 {% block content %}
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-3 bg-light pt-3">
         <div class="col-lg-11">
-            <div class="card shadow-sm bg-light rounded-lg mt-5">
-                <header class="card-header">
-                    <h2>{{client.name}}</h2>
-                </header>
-                <div class="card-body">
-                    <div class="row mb-2">
-                        <div class="col-md-12">
-                                <div class="row mb-3">
-                                    <div class="form-group col-md-6 ">
-                                        <label>Nome: </label>
-                                        {{client.name}}
-                                    </div>
-                                    <div class="form-group col-md-6 ">
-                                        <label>Email: </label>
-                                        {{client.email}}
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="form-group col-md-6 ">
-                                        <label>Telefone: </label>
-                                        {{client.phone_number}}
-                                    </div>
-                                    <div class="form-group col-md-6 ">
-                                        <label>CPF/CNPJ: </label>
-                                        {{client.code}}
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="form-group col-md-6 ">
-                                        <label>Código de cadastro: </label>
-                                        {{client.id}}
-                                    </div>
-                                    <div class="form-group col-md-6 ">
-                                        <label>Tipo de cliente: </label>
-                                        {{client.business}}
-                                    </div>
-                                </div>
-                                
-                                <div class="row mb-3">
-                                    <div class="col-md-6 mb-1">
-                                        <label>Estado: </label>
-                                        {{client.state}}
-                                    </div>
-                                    <div class="col-md-6 mb-1">
-                                        <label>Cidade: </label>
-                                        {{client.city}}
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6 mb-1">
-                                        <label>N° testes realizados: </label>
-                                        {{tests_count}}
-                                    </div>
-                                    <div class="col-md-6 mb-1">
-                                        <h4>Nota: </h4>
-                                        <h3>{{client.grade}}</h3>
-                                    </div>
-                                </div>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col text-center">
-                                            <!--<a class="small" href="password.html">Forgot Password?</a>-->
-                                            <button type="submit" class="btn btn-primary btn-block">Cadastrar
-                                                cliente</button>
-                                        </div>
-                                    </div>
-                                </div>
 
+            <div class="row text-center pl-0 pr-0">
+                <h2>{{client.name}}</h2>
+                <hr>
+            </div>
 
-                            </form>
+            <div class="row mb-2 mt-2">
+                <div class="col-md-12 mb-2">
+                    <h4>Dados do cliente:</h4>
+                </div>
+                <div class="col-md-12">
+                    <div class="row mb-3">
+                        <div class="form-group col-md-6 ">
+                            <label>Nome: </label>
+                            {{client.name}}
                         </div>
-                    </div> <!-- row.// -->
-                </div> <!-- card-body .// -->
-            </div> <!-- order-group.// -->
+                        <div class="form-group col-md-6 ">
+                            <label>Email: </label>
+                            {{client.email}}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="form-group col-md-6 ">
+                            <label>Telefone: </label>
+                            {{client.phone_number}}
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label>CPF/CNPJ: </label>
+                            {{client.code}}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="form-group col-md-6 ">
+                            <label>Código de cadastro: </label>
+                            {{client.id}}
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label>Tipo de cliente: </label>
+                            {{client.business}}
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-1">
+                            <label>Estado: </label>
+                            {{client.state}}
+                        </div>
+                        <div class="col-md-6 mb-1">
+                            <label>Cidade: </label>
+                            {{client.city}}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-1">
+                            <label>N° testes realizados: </label>
+                            {{tests_count}}
+                        </div>
+                        <div class="col-md-6 mb-1">
+                            <label for="">Nota: </label>
+                            <strong>{{client.grade}}</strong>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col text-center">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mb-2 mt-2">
+                    <h4>Testes realizados: </h4>
+                    <table class="table table-striped"  id="clientTestsTable">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Cliente</th>
+                                <th>Data de início</th>
+                                <th>Data de finalização</th>
+                                <th>Nota</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for test in tests %}
+                            <tr>
+                                <th scope="row"><a href="#">{{test.product_tested}}</a></td>
+                                <td>{{test.client}}
+                                <td>{{test.start_date}}</td>
+                                <td>{{test.end_date}}</td>
+                                <td>{{test.final_grade}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div> <!-- row.// -->
+
         </div>
     </div>
 </div>

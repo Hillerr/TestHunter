@@ -1,5 +1,5 @@
 // Call the dataTables jQuery plugin
-var lenguage_config = {
+var tableConfig = {
   "language": {
       "lengthMenu": "Display _MENU_ records per page",
       "zeroRecords": "Nada encontrado",
@@ -23,7 +23,8 @@ var lenguage_config = {
 
 $(document).ready(function() {
   
-  $('#myClientsTable').DataTable(lenguage_config);
-  $('#myTestsTable').DataTable(lenguage_config);
+  $('#myClientsTable').DataTable(tableConfig);
+  $('#myTestsTable').DataTable(tableConfig);
+  $('#clientTestsTable').DataTable(tableConfig);
 });
 

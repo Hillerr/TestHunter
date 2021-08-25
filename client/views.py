@@ -1,3 +1,4 @@
+from tests.models import Test
 from django.contrib import messages
 from client.models import Client
 from django.shortcuts import redirect, render
@@ -65,9 +66,11 @@ def new_client(request):
     
 def client_detail(request, client_id):
     client_profile = Client.objects.get(id=client_id)
+    tests = Test.objects.filter(client_id=client_id)
 
     context = {
-        'client': client_profile
+        'client': client_profile,
+        'tests': tests
     }
 
     return render(request, 'client/client-detail.html', context)
