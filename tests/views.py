@@ -80,11 +80,11 @@ def new_test(request):
             last_tests = tests_cl[:2]
 
             for i in last_tests:
-                print(i.product_tested)
+                print(i.product_tested, i.final_grade)
                 client_grade += i.final_grade
                 print(client_grade)
 
-            client.grade =  (client_grade + final_grade)/3
+            client_grade =  (client_grade + final_grade)/3
         else:
             for i in tests_cl:
                 client_grade += i.final_grade
