@@ -64,16 +64,6 @@
                         <th>Nota</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Tipo de cliente</th>
-                        <th>Estado</th>
-                        <th>Cidade</th>
-                        <th>Email</th>
-                        <th>Nota</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     {% for client in clients %}
                     <tr>
@@ -93,12 +83,13 @@
     <div class="card shadow-sm bg-light mb-5">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            Últimos testes
+            Meus últimos testes
         </div>
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>ID do teste</th>
                         <th>Produto testado</th>
                         <th>Cliente</th>
                         <th>Data de início</th>
@@ -109,8 +100,9 @@
                 <tbody>
                     {% for test in tests %}
                     <tr>
-                        <th scope="row"><a href="{% url 'test_detail' test.id %}" class="link-dark text-decoration-none">{{test.product_tested}}</a></td>
-                        <td>{{test.client}}
+                        <th scope="row"><a href="{% url 'test_detail' test.id %}" class="link-dark text-decoration-none">{{test.id}}</a></td>
+                        <th scope="row"><a href="#" class="link-light text-decoration-none">{{test.product_tested}}</a></td>
+                        <td>{{test.client}}</td>
                         <td>{{test.start_date}}</td>
                         <td>{{test.end_date}}</td>
                         <td>{{test.final_grade}}</td>

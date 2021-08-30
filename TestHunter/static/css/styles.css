@@ -11751,3 +11751,11 @@ ul.thumb li img{
 .bg-int{
   background: var(--bs-int-green);
 }
+
+.link-gray {
+  color: var(--bs-gray);
+}
+
+.link-gray:hoover{
+  color: rgb(221, 214, 214);
+}

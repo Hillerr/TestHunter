@@ -101,7 +101,7 @@ def new_test(request):
 
 @login_required(login_url='login')
 def tests(request):
-    tests = Test.objects.all().order_by('-start_date')
+    tests = Test.objects.all().order_by('-created_at')
     context = {
         'tests': tests,
         'page_name': 'Testes'
@@ -111,7 +111,7 @@ def tests(request):
 
 @login_required(login_url='login')
 def my_tests(request):
-    tests = Test.objects.filter(user_id=request.user.id).order_by('-start_date')
+    tests = Test.objects.filter(user_id=request.user.id).order_by('-created_at')
     context = {
         'tests': tests
     }
