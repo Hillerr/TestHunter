@@ -62,6 +62,7 @@
   --bs-body-color: #212529;
   --bs-body-bg: #fff;
   --bs-dark-blue: #212529;
+  --bs-int-green: #459443;
 }
 
 *,
@@ -11745,4 +11746,8 @@ ul.thumb li img{
   width: 80px;
   height: 80px;
   border: 1px solid gray;
+}
+
+.bg-int{
+  background: var(--bs-int-green);
 }

@@ -22,8 +22,6 @@ def new_test(request):
 
         test.client = client
 
-        
-
         try:
             start_date = request.POST['start_date']
             end_date = request.POST['end_date']
@@ -101,9 +99,33 @@ def new_test(request):
     return render(request, 'tests/new-test.html')
 
 
+@login_required(login_url='login')
 def tests(request):
-    return render(request, 'tests/tests.html')
+    tests = Test.objects.all().order_by('-start_date')
+    context = {
+        'tests': tests,
+        'page_name': 'Testes'
+    }
+    return render(request, 'tests/tests-table.html', context)
 
 
+@login_required(login_url='login')
+def my_tests(request):
+    tests = Test.objects.filter(user_id=request.user.id).order_by('-start_date')
+    context = {
+        'tests': tests
+    }
+    return render(request, 'tests/tests-table.html', context)
+
+
+@login_required(login_url='login')
 def test_detail(request, test_id):
-    return render(request, 'tests/test-detail.html')
+    test = Test.objects.get(id=test_id)
+    tests = Test.objects.filter(product_tested=test.product_tested).exclude(id=test.id)
+
+    context = {
+        'test': test,
+        'tests': tests
+    }
+
+    return render(request, 'tests/test-detail.html', context)

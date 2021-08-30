@@ -80,15 +80,36 @@ def dashboard(request):
     if request.user.is_authenticated:
         user = request.user
         clients = Client.objects.filter(user_id=user.id)
-        clients_count = clients.count()
 
-        tests = Test.objects.filter(user_id=user.id)
-        print(tests.count())
+        if len(clients) != 0:
+            clients_count = clients.count()
+        else:
+            clients_count = 0
+
+        tests = Test.objects.filter(user_id=user.id, status='Finalizado')
+        tests_count = tests.count()
+
+        unfinished_tests = Test.objects.filter(user_id=user.id, status='Em andamento')
+        unfinished_tests_count = unfinished_tests.count()
+
+        latest_tests = tests.order_by('-created_at')
+
+        if len(latest_tests) > 5:
+            latest_tests = latest_tests[:5]
+        
+        top_clients = clients.order_by('-grade')
+
+        if len(top_clients) > 5:
+            top_clients = top_clients[:5]
+
+        
     
     context = {
-        'clients': clients,
+        'clients': top_clients,
         'clients_count': clients_count,
-        'tests': tests
+        'tests': latest_tests,
+        'tests_count': tests_count,
+        'unfinished_tests_count': unfinished_tests_count
     }
 
     return render(request, 'accounts/dashboard.html', context)

@@ -74,3 +74,31 @@ def client_detail(request, client_id):
     }
 
     return render(request, 'client/client-detail.html', context)
+
+
+@login_required(login_url='login')
+def clients(request):
+    clients = Client.objects.all()
+    clients_count = clients.count()
+
+    context = {
+        'page_name': 'Clientes',
+        'clients': clients,
+        'clients_count': clients_count
+    }
+
+    return render(request, 'client/clients-table.html', context)
+
+
+@login_required(login_url='login')
+def my_clients(request):
+    clients = Client.objects.filter(user_id=request.user.id)
+    clients_count = clients.count()
+
+    context = {
+        'page_name': 'Meus Clientes',
+        'clients': clients,
+        'clients_count': clients_count
+    }
+
+    return render(request, 'client/clients-table.html', context)

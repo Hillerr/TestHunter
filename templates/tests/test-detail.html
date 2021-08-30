@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center mt-3 bg-light pt-3">
+        <div class="col-lg-11">
+
+            <div class="row text-center pl-0 pr-0">
+                <h2>Teste: {{test.product_tested}}</h2>
+                <hr>
+            </div>
+
+            <div class="row mb-2 mt-2">
+                <div class="col-md-12 mb-2">
+                    <h4>Dados do teste:</h4>
+                </div>
+                <div class="col-md-12">
+                    <div class="row mb-3">
+                        <div class="form-group col-md-6 ">
+                            <label>Nome do produto: </label>
+                            {{test.product_tested}}
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label>Nome do cliente: </label>
+                            {{test.client}}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="form-group col-md-6 ">
+                            <label>Cadastrado por: </label>
+                            {{test.user.username}}
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label>ID do contrato: </label>
+                            {{test.contract_id}}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="form-group col-md-6 ">
+                            <label>Data de início: </label>
+                            {{test.start_date}}
+                        </div>
+                        <div class="form-group col-md-6 ">
+                            <label>Data de finalização: </label>
+                            {{test.end_date}}
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-1">
+                            <label>Status: </label>
+                            {{test.status}}
+                        </div>
+                        <div class="col-md-6 mb-1">
+                            <label>Responsável técnico: </label>
+                            {{test.technician}}
+                        </div>
+                    </div>
+                    <div class="row mb-3 mt-1">
+                        <h5>Conhecimento técnico do cliente</h5>
+                        <div class="col-md-12 mb-1 ">
+                            <label>Nota: </label>
+                            <strong>{{test.tk_grade}}</strong>
+                        </div>
+                        <div class="col-md-12 mb-1">
+                            <label for="">Comentários: </label>
+                            <p>{{test.tk_comments}}</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mt-1">
+                        <h5>Tempo de resposta do cliente</h5>
+                        <div class="col-md-12 mb-1 ">
+                            <label>Nota: </label>
+                            <strong>{{test.tr_grade}}</strong>
+                        </div>
+                        <div class="col-md-12 mb-1">
+                            <label for="">Comentários: </label>
+                            <p>{{test.tr_comments}}</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mt-1">
+                        <h5>Feedback do cliente</h5>
+                        <div class="col-md-12 mb-1 ">
+                            <label>Nota: </label>
+                            <strong>{{test.fb_grade}}</strong>
+                        </div>
+                        <div class="col-md-12 mb-1">
+                            <label for="">Comentários: </label>
+                            <p>{{test.fb_comments}}</p>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mt-1">
+                        <h4>Nota final</h4>
+                        <div class="col-md-12 mb-1 ">
+                            <strong style="font-size: 1.5em;">{{test.final_grade}}</strong>
+
+                        </div>
+                        <div class="col-md-12 mb-1">
+                            <label for="">Comentários: </label>
+                            {{test.final_comments}}
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- row.// -->
+
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row justify-content-center mt-3 bg-light pt-3">
+        <div class="col-lg-11">
+            <div class="col-md-12 mb-2 mt-2">
+                <h5>Outros testes deste produto: </h5>
+                <table class="table table-striped" id="clientTestsTable">
+                    <thead>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Cliente</th>
+                            <th>Data de início</th>
+                            <th>Data de finalização</th>
+                            <th>Nota</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for test in tests %}
+                        <tr>
+                            <th scope="row"><a href="#">{{test.product_tested}}</a></td>
+                            <td>{{test.client}}
+                            <td>{{test.start_date}}</td>
+                            <td>{{test.end_date}}</td>
+                            <td>{{test.final_grade}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

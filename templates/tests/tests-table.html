@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">{{page_name}}</h1>
+
+    <div class="card shadow-sm bg-light mb-5">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Testes
+        </div>
+        <div class="card-body">
+            <table class="table table-striped"  id="myTestsTable">
+                <thead>
+                    <tr>
+                        <th>Produto testado</th>
+                        <th>Cliente</th>
+                        <th>Data de início</th>
+                        <th>Data de finalização</th>
+                        <th>Cadastrado por</th>
+                        <th>Status</th>
+                        <th>Nota</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for test in tests %}
+                    <tr>
+                        <th scope="row"><a class="text-decoration-none" href="{% url 'test_detail' test.id %}">{{test.product_tested}}</a></td>
+                        <td>{{test.client}}
+                        <td>{{test.start_date}}</td>
+                        <td>{{test.end_date}}</td>
+                        <td>{{test.user.username}}</td>
+                        <td>{{test.status}}</td>
+                        <td><strong>{{test.final_grade}}</strong></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}
