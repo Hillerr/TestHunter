@@ -12,6 +12,7 @@
 
             <div class="row mb-2 mt-2">
                 <div class="col-md-12 mb-2">
+                    {% include 'includes/alerts.html' %}
                     <h4>Dados do teste:</h4>
                 </div>
                 <div class="col-md-12">
@@ -101,6 +102,27 @@
                         </div>
                     </div>
                 </div>
+                {% if creator == True %}
+                <div class="container">
+                    <div class="row mt-5">
+                        <div class="col-md-2 text-center">
+                            <form action="{% url 'edit_test' test.id %}" method="get">
+                                <button type="submit" class="btn btn-secondary btn-block">Editar
+                                    Teste</button>
+                            </form>
+                        </div>
+                        {% if test.status == "Em andamento" %}
+                        <div class="col-md-2 text-center">
+                            <form action="{% url 'finish_test' %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary btn-block" value="{{test.id}}" name="test_id">Encerrar
+                                    Teste</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
 
             </div> <!-- row.// -->
 

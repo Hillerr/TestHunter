@@ -7,6 +7,7 @@ test_status = (
     ('Em andamento', 'Em andamento')
 )
 
+DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 # Create your models here.
 class Test(models.Model):
