@@ -25,17 +25,23 @@ def new_test(request):
         try:
             start_date = request.POST['start_date']
             end_date = request.POST['end_date']
+            print(start_date, end_date)
 
-            sdate = datetime.datetime.strptime(start_date, "%Y-%m-%d").date()
-            test.start_date = start_date
+            if start_date != '':
+                test.start_date = start_date
 
-            if end_date != '':
+            elif end_date != '':
+                test.end_date = end_date
+
+            elif end_date != '' and start_date != '':
                 edate = datetime.datetime.strptime(end_date, "%Y-%m-%d").date()
+                sdate = datetime.datetime.strptime(start_date, "%Y-%m-%d").date()
                 if sdate > edate:
                     messages.error(request, "A data de ínicio tem que anteceder a data de finalização")
                     return redirect('new_test')
                 else:
                     test.end_date = end_date
+                    test.start_date = start_date
 
         except Exception as ex:
             print(ex)
@@ -74,13 +80,10 @@ def new_test(request):
         client_grade = 0
 
         if n_tests >= 2: 
-            print(n_tests)
             last_tests = tests_cl[:2]
 
             for i in last_tests:
-                print(i.product_tested, i.final_grade)
                 client_grade += i.final_grade
-                print(client_grade)
 
             client_grade =  (client_grade + final_grade)/3
         else:

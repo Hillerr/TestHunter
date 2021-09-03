@@ -18,7 +18,7 @@ class Test(models.Model):
     user = models.ForeignKey(Account, verbose_name='Usário que criou', on_delete=models.SET_NULL, blank=True, null=True)
     client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
     product_tested = models.CharField(max_length=20, verbose_name='Produto testado')
-    start_date = models.DateField(verbose_name='Data de início')
+    start_date = models.DateField(verbose_name='Data de início', blank=True, null=True)
     created_at = models.DateTimeField(verbose_name='Data de criação', auto_now_add=True)
     end_date = models.DateField(verbose_name='Data de finalização', blank=True, null=True)
     technician = models.CharField(verbose_name="Nome do instalador/técnico", max_length=30, blank=True)
