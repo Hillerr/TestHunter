@@ -1,5 +1,5 @@
 from django import forms
-from .models import Test, test_type
+from .models import Test, test_type, TestImages
 
 
 class TestForm(forms.ModelForm):
@@ -16,3 +16,7 @@ class TestForm(forms.ModelForm):
 
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control form-control-sm'
+
+
+class TestImageForm(forms.Form):
+    image = forms.ImageField(label='Escolha um arquivo')

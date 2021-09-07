@@ -178,23 +178,34 @@
                                 </div>
 
                             </form>
-                            <form action="{% url 'add_test_image' test.id %}" method="post"></form>
-                            <div class="row">
-                                <label class="form-label" for="customFile">Adicionar imagens do teste:</label>
-                                <div class="col-md-6">
-                                    <div class="input-group">
+                            <form action="{% url 'add_test_image' test.id %}" method="post"
+                                enctype="multipart/form-data">
+                                {% csrf_token %}
 
-                                        <input type="file" class="form-control form-control-sm" id="customFile"
-                                            name="test_image" />
+                                <div class="row">
+                                    <div class="col-md-6">
 
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-sm btn-secondary btn-block">Adcionar
-                                                imagem</button>
+                                        {{ image_form.image.label_tag }}
+                                        {{ image_form.image.help_text }}
+                                        <div class="input-group">
+                                            <p>{{ image_form.image }}</p>
+                                            <p>{{ image_form.non_field_errors }}</p>
+                                            <p>
+                                                {{ image_form.image.errors }}
+
+                                            </p>
+                                            <div class="input-group-append ml-3">
+                                                <button type="submit"
+                                                    class="btn btn-sm btn-secondary btn-block">Adcionar
+                                                    imagem</button>
+
+                                            </div>
                                         </div>
+
+
 
                                     </div>
                                 </div>
-                            </div>
                             </form>
                         </div>
                     </div> <!-- row.// -->

@@ -5,7 +5,7 @@ from client.models import Client
 from django.contrib import messages
 import datetime
 from .utils import *
-from .forms import TestForm
+from .forms import TestForm, TestImageForm
 
 # Create your views here.
 @login_required(login_url='login')
@@ -95,6 +95,7 @@ def edit_test(request, test_id):
 
     context = {
         'test': test,
+        'image_form': TestImageForm()
     }
 
     return render(request,'tests/test-edit.html', context)
@@ -126,9 +127,15 @@ def finish_test(request):
 @login_required(login_url='login')
 def add_test_image(request, test_id):
     if request.method == 'POST':
-        test_image = TestImages()
-        test_image.test = Test.objects.get(id=test_id)
-        test_image.image = request.POST['test_image']
+        form = TestImageForm(request.POST, request.FILES)
+        print(request.FILES)
+
+        if form.is_valid():
+            print('here')
+            test_image = TestImages()
+            test_image.test = Test.objects.get(id=test_id)
+            test_image.image = request.FILES['image']
+            test_image.save()
 
     return redirect('edit_test', test_id)
 
