@@ -4,8 +4,8 @@
 
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Dashboard</h1>
-
+    <h1 class="h2 mt-4">Dashboard</h1>
+    <hr>
     <div class="row">
         <div class="col-md-3">
             <div class="card bg-light shadow-sm mb-5" style="max-width: 18rem;">
@@ -37,7 +37,7 @@
                 <div class="card-header">Testes em andamento</div>
                 <div class="card-body text-dark">
                     <h2>{{unfinished_tests_count}}</h2>
-                    <a href="">
+                    <a href="{% url 'my_unfinished_tests' %}">
                         <i class="fa fa-eye"></i> Meus testes em andamento
                     </a><br>
                     <a href="{% url 'new_test' %}"><i class="fas fa-weight"></i> Adicionar teste</a>
@@ -45,15 +45,14 @@
             </div>
         </div>
     </div>
-
-
-    <div class="card shadow-sm bg-light mb-5">
+    <hr>
+    <div class="card shadow-sm bg-light mb-2">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
             Top 10 clientes
         </div>
         <div class="card-body">
-            <table class="table table-striped">
+            <table class="table table-striped table-sm">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -79,14 +78,14 @@
             </table>
         </div>
     </div>
-
+    <hr>
     <div class="card shadow-sm bg-light mb-5">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
             Meus últimos testes
         </div>
         <div class="card-body">
-            <table class="table table-striped">
+            <table class="table table-striped table-sm">
                 <thead>
                     <tr>
                         <th>ID do teste</th>

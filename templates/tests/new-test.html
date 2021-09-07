@@ -5,10 +5,12 @@
         document.getElementById(value_id).innerHTML = document.getElementById(range_id).value;
     }
 </script>
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container-fluid px-4">
+    <div class="row justify-content-center mt-4">
         <div class="col-lg-11">
-            <div class="card shadow-sm bg-light rounded-lg mt-5">
+            <h2 class="h2">Novo Teste</h2>
+            <hr>
+            <div class="card shadow-sm bg-light rounded-lg ">
                 <header class="card-header">
                     <strong class="d-inline-block mr-3">Novo Teste</strong>
                     {% include 'includes/alerts.html' %}
@@ -29,39 +31,52 @@
                                 <div class="row mb-3">
                                     <div class="form-group col-md-6">
                                         <label>
-                                            <h4>CPF/CNPJ do cliente</h4>
+                                            <h4>CPF/CNPJ do cliente:</h4>
                                         </label>
                                         <input class="form-control form-control-lg" type="text" name="client_code" id=""
                                             required>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>
-                                            <h4>Produto testado</h4>
+                                            <h4>Produto testado:</h4>
                                         </label>
                                         <input class="form-control form-control-lg" type="text" name="product_tested"
                                             id="" required maxlength="20">
                                     </div>
+                                    
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="form-group col-md-6 mb-1">
-                                        <label>Data de início</label>
-                                        <input class="form-control" type="date" name="start_date" id="">
+                                    <div class="form-group col-md-4 mb-1">
+                                        <label>Data de início:</label>
+                                        <input class="form-control form-control-sm" type="date" name="start_date" id="">
                                     </div>
 
-                                    <div class="form-group col-md-6 mb-1">
-                                        <label>Data de finalização</label>
-                                        <input class="form-control" type="date" name="end_date" id="">
+                                    <div class="form-group col-md-4 mb-1">
+                                        <label>Data de finalização:</label>
+                                        <input class="form-control form-control-sm" type="date" name="end_date" id="">
+                                    </div>
+
+                                    <div class="form-group col-md-4 mb-1">
+                                        <label>Tipo de teste:</label>
+                                        {{form.test_type}}
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="form-group col-md-6 mb-1">
-                                        <label>Técnico responsável</label>
-                                        <input class="form-control" type="text" name="technician" maxlength="30" id=""
+                                    <div class="form-group col-md-5 mb-1">
+                                        <label>Técnico responsável:</label>
+                                        <input class="form-control form-control-sm" type="text" name="technician" maxlength="30" id=""
                                             >
                                     </div>
-                                    <div class="form-group col-md-6 mb-1">
-                                        <label>ID do contrato</label>
-                                        <input class="form-control" type="text" name="contract_id" maxlength="30" id="">
+                                    <div class="form-group col-md-4 mb-1">
+                                        <label>ID do contrato:</label>
+                                        <input class="form-control form-control-sm" type="text" name="contract_id" maxlength="30" id="">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>
+                                            <lable>Quantidade:</lable>
+                                        </label>
+                                        <input class="form-control form-control-sm" type="number" name="quantity"
+                                            id="" maxlength="20">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -76,7 +91,7 @@
                                         <label for="customRange3" class="form-label">Nota</label>
                                         <input type="range" class="form-range" min="0" max="5" step="0.5"
                                             name="tk_range" id="tk_range" oninput="update_grade('tk_range', 'tk_grade')"
-                                            required>
+                                            >
                                     </div>
                                     <div class="form-group col-md-1">
                                         <h2 id="tk_grade">4.3</h2>
@@ -101,7 +116,7 @@
                                         <label for="customRange3" class="form-label">Nota</label>
                                         <input name="tr_range" type="range" class="form-range" min="0" max="5"
                                             step="0.5" id="tr_range" oninput="update_grade('tr_range', 'tr_grade')"
-                                            required>
+                                            >
                                     </div>
 
                                     <div class="form-group col-md-1">
@@ -128,7 +143,7 @@
                                         <label for="customRange3" class="form-label">Nota</label>
                                         <input name="fb_range" type="range" class="form-range" min="0" max="5"
                                             step="0.5" id="fb_range" oninput="update_grade('fb_range', 'fb_grade')"
-                                            required>
+                                            >
                                     </div>
                                     <div class="form-group col-md-1">
                                         <h2 id="fb_grade">4.3</h2>

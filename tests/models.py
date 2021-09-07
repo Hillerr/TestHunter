@@ -7,6 +7,11 @@ test_status = (
     ('Em andamento', 'Em andamento')
 )
 
+test_type = (
+    ('Usabilidade', 'Usabilidade'),
+    ('Campo', 'Campo')
+)
+
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 # Create your models here.
@@ -18,6 +23,8 @@ class Test(models.Model):
     user = models.ForeignKey(Account, verbose_name='Usário que criou', on_delete=models.SET_NULL, blank=True, null=True)
     client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True)
     product_tested = models.CharField(max_length=20, verbose_name='Produto testado')
+    quantity = models.IntegerField(verbose_name="Quantidade testada", blank=True, null=True)
+    test_type = models.CharField(verbose_name='Tipo de teste', choices=test_type, null=True, max_length=20)
     start_date = models.DateField(verbose_name='Data de início', blank=True, null=True)
     created_at = models.DateTimeField(verbose_name='Data de criação', auto_now_add=True)
     end_date = models.DateField(verbose_name='Data de finalização', blank=True, null=True)
@@ -35,3 +42,15 @@ class Test(models.Model):
 
     def __str__(self) -> str:
         return self.product_tested
+
+
+class TestImages(models.Model):
+    class Meta:
+        verbose_name = 'Imagens do teste'
+        verbose_name_plural = 'Imagens do teste'
+
+    test = models.ForeignKey(Test, verbose_name='Teste', default=None, on_delete=models.CASCADE)
+    image = models.ImageField(verbose_name='Imagem', upload_to='tests/images', max_length=255)
+
+    def __str__(self) -> str:
+        return self.test.product_tested

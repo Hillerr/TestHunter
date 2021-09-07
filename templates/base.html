@@ -27,7 +27,7 @@
 
 <body class="sb-nav-fixed">
     <!--Navbar-->
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-int" style="background: --bs-int-green;">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-int shadow-sm" style="background: --bs-int-green;">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="{% url 'dashboard' %}">Test Hunter</a>
         <!-- Sidebar Toggle-->
@@ -39,7 +39,7 @@
             <div class="input-group">
                 <input class="form-control" type="text" placeholder="Buscar" aria-label="Search for..."
                     aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
+                <button class="btn btn-secondary" id="btnNavbarSearch" type="button"><i
                         class="fas fa-search"></i></button>
             </div>
         </form>
@@ -70,7 +70,7 @@
                             </div>
                             Dashboard
                         </a>
-                        <hr>
+                        <hr class="mb-0 mt-0">
                         <a class="nav-link" href="{% url 'clients' %}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-user"></i>
@@ -84,7 +84,7 @@
                             </div>
                             Adicionar clientes
                         </a>
-                        <hr class="mb-0">
+                        <hr class="mb-0 mt-0">
                         <a class="nav-link" href="{% url 'tests' %}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-weight"></i>

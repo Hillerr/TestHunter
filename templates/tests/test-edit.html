@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
 <script>
+
     function update_grade(range_id, value_id) {
         document.getElementById(value_id).innerHTML = document.getElementById(range_id).value;
     }
 </script>
-<div class="container">
+<div class="container-fluid px-4">
     <div class="row justify-content-center">
-        <div class="col-lg-11">
-            <div class="card shadow-sm border-dark rounded-lg mt-5">
+        <div class="col-lg-12 mt-5">
+            <h2>Editar teste: {{test.product_tested}}</h2>
+            <div class="card shadow-sm rounded-lg">
                 <header class="card-header">
-                    <strong class="d-inline-block mr-3">Novo Teste</strong>
+                    <strong class="d-inline-block mr-3">Editar Teste</strong>
                     {% include 'includes/alerts.html' %}
                     {% if client_form.errors %}
                     {% for field in client_form %}
@@ -26,7 +28,7 @@
 
                             <form action="{% url 'edit_test' test.id%}" method="post">
                                 {% csrf_token %}
-                                <div class="row mb-3">
+                                <div class="row mb-2">
                                     <div class="form-group col-md-6">
                                         <label>
                                             <h4>CPF/CNPJ do cliente</h4>
@@ -42,39 +44,48 @@
                                             id="" required maxlength="20" value="{{test.product_tested}}">
                                     </div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="form-group col-md-6 mb-1">
+                                <div class="row mb-2">
+                                    <div class="form-group col-md-6">
                                         <label>Data de início</label>
-                                        <input class="form-control" type="date" name="start_date" id="" required 
-                                        value="{{test.start_date.year}}-{{test.start_date.month|stringformat:'02d'}}-{{test.start_date.day|stringformat:'02d'}}">
+                                        <input class="form-control form-control-sm" type="date" name="start_date" id=""
+                                            value="{{test.start_date.year}}-{{test.start_date.month|stringformat:'02d'}}-{{test.start_date.day|stringformat:'02d'}}">
                                     </div>
 
-                                    <div class="form-group col-md-6 mb-1">
+                                    <div class="form-group col-md-6">
                                         <label>Data de finalização</label>
-                                        <input class="form-control" type="date" name="end_date" id="" 
-                                        value="{{test.end_date.year}}-{{test.end_date.month|stringformat:'02d'}}-{{test.end_date.day|stringformat:'02d'}}">
+                                        <input class="form-control form-control-sm" type="date" name="end_date" id=""
+                                            value="{{test.end_date.year}}-{{test.end_date.month|stringformat:'02d'}}-{{test.end_date.day|stringformat:'02d'}}">
                                     </div>
                                 </div>
-                                <div class="row mb-3">
-                                    <div class="form-group col-md-6 mb-1">
-                                        <label>Técnico responsável</label>
-                                        <input class="form-control" type="text" name="technician" maxlength="30" id=""
-                                            required value="{{test.technician}}">
+                                <div class="row mb-2">
+                                    <div class="form-group col-md-5 mb-1">
+                                        <label>Técnico responsável:</label>
+                                        <input class="form-control form-control-sm" type="text" name="technician"
+                                            maxlength="30" id="" value="{{test.technician}}">
                                     </div>
-                                    <div class="form-group col-md-6 mb-1">
-                                        <label>ID do contrato</label>
-                                        <input class="form-control" type="text" name="contract_id" maxlength="30" id=""
-                                            required value="{{test.contract_id}}">
+                                    <div class="form-group col-md-4 mb-1">
+                                        <label>ID do contrato:</label>
+                                        <input value="{{test.contract_id}}" class="form-control form-control-sm"
+                                            type="text" name="contract_id" maxlength="30" id="">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>
+                                            <lable>Quantidade:</lable>
+                                        </label>
+                                        <input value="quantity" class="form-control form-control-sm" type="number"
+                                            name="quantity" id="" maxlength="20">
                                     </div>
                                 </div>
-                                <div class="row mb-3">
+                                <div class="row mb-2 mt-3">
                                     <h3>Avaliação</h3>
                                     <hr>
                                 </div>
-                                <div class="row mb-3">
+                                {% load l10n %}
+                                {% localize off %}
+                                <div class="row mb-2">
                                     <h6>Sua avaliação em relação ao conhecimento técnico do cliente:</h6>
                                 </div>
-                                <div class="row mb-3">
+                                <div class="row mb-2">
                                     <div class="form-group col-md-5">
                                         <label for="customRange3" class="form-label">Nota</label>
                                         <input type="range" class="form-range" min="0" max="5" step="0.5"
@@ -87,7 +98,7 @@
                                             update_grade('tk_range', 'tk_grade')
                                         </script>
                                     </div>
-                                    <div class="row mb-4">
+                                    <div class="row mb-3">
                                         <div class="form-group col-md-12">
                                             <label>Comentários</label>
                                             <textarea name="tk_comments" rows="4" placeholder="Sua opinião"
@@ -96,15 +107,15 @@
                                     </div>
                                 </div>
 
-                                <div class="row mb-3 mt-3">
+                                <div class="row mb-2 mt-3">
                                     <h6>Sua avaliação em relação ao tempo de resposta do cliente:</h6>
                                 </div>
-                                <div class="row mb-3">
+                                <div class="row mb-2">
                                     <div class="form-group col-md-5">
                                         <label for="customRange3" class="form-label">Nota</label>
                                         <input name="tr_range" type="range" class="form-range" min="0" max="5"
-                                            step="0.5" id="tr_range" oninput="update_grade('tr_range', 'tr_grade')" value="{{test.tr_grade}}"
-                                            required>
+                                            step="0.5" id="tr_range" oninput="update_grade('tr_range', 'tr_grade')"
+                                            value="{{test.tr_grade}}" required>
                                     </div>
 
                                     <div class="form-group col-md-1">
@@ -114,7 +125,7 @@
                                         </script>
                                     </div>
 
-                                    <div class="row mb-4">
+                                    <div class="row mb-3">
                                         <div class="form-group col-md-12">
                                             <label>Comentários</label>
                                             <textarea name="tr_comments" rows="4" placeholder="Sua opinião"
@@ -123,15 +134,15 @@
                                     </div>
                                 </div>
 
-                                <div class="row mb-3 mt-3">
+                                <div class="row mb-2 mt-3">
                                     <h6>Sua avaliação em relação ao feedback fornecido pelo cliente:</h6>
                                 </div>
-                                <div class="row mb-3">
+                                <div class="row mb-2">
                                     <div class="form-group col-md-5">
                                         <label for="customRange3" class="form-label">Nota</label>
                                         <input name="fb_range" type="range" class="form-range" min="0" max="5"
                                             step="0.5" id="fb_range" oninput="update_grade('fb_range', 'fb_grade')"
-                                            required>
+                                            required value="{{test.fb_grade}}">
                                     </div>
                                     <div class="form-group col-md-1">
                                         <h2 id="fb_grade">4.3</h2>
@@ -147,6 +158,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                {% endlocalize %}
 
                                 <div class="row mb-3 mt-3">
                                     <div class="form-group col-md-12">
@@ -159,13 +171,30 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Cadastrar
-                                                Teste</button>
+                                            <button type="submit" class="btn btn-primary btn-block">Salvar
+                                                Alterações</button>
                                         </div>
                                     </div>
                                 </div>
 
+                            </form>
+                            <form action="{% url 'add_test_image' test.id %}" method="post"></form>
+                            <div class="row">
+                                <label class="form-label" for="customFile">Adicionar imagens do teste:</label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
 
+                                        <input type="file" class="form-control form-control-sm" id="customFile"
+                                            name="test_image" />
+
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-sm btn-secondary btn-block">Adcionar
+                                                imagem</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
                             </form>
                         </div>
                     </div> <!-- row.// -->

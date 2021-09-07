@@ -105,13 +105,14 @@
                 {% if creator == True %}
                 <div class="container">
                     <div class="row mt-5">
+                        {% if test.status == "Em andamento" %}
                         <div class="col-md-2 text-center">
                             <form action="{% url 'edit_test' test.id %}" method="get">
                                 <button type="submit" class="btn btn-secondary btn-block">Editar
                                     Teste</button>
                             </form>
                         </div>
-                        {% if test.status == "Em andamento" %}
+                        
                         <div class="col-md-2 text-center">
                             <form action="{% url 'finish_test' %}" method="POST">
                                 {% csrf_token %}
