@@ -45,16 +45,20 @@
                                     </div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label>Data de início</label>
                                         <input class="form-control form-control-sm" type="date" name="start_date" id=""
                                             value="{{test.start_date.year}}-{{test.start_date.month|stringformat:'02d'}}-{{test.start_date.day|stringformat:'02d'}}">
                                     </div>
 
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-4">
                                         <label>Data de finalização</label>
                                         <input class="form-control form-control-sm" type="date" name="end_date" id=""
                                             value="{{test.end_date.year}}-{{test.end_date.month|stringformat:'02d'}}-{{test.end_date.day|stringformat:'02d'}}">
+                                    </div>
+                                    <div class="form-group col-md-4 mb-1">
+                                        <label>Tipo de teste:</label>
+                                        {{form.test_type}}
                                     </div>
                                 </div>
                                 <div class="row mb-2">
@@ -186,8 +190,9 @@
                                     <div class="col-md-6">
 
                                         {{ image_form.image.label_tag }}
-                                        {{ image_form.image.help_text }}
+
                                         <div class="input-group">
+                                            <p>{{ image_form.image.help_text }}</p>
                                             <p>{{ image_form.image }}</p>
                                             <p>{{ image_form.non_field_errors }}</p>
                                             <p>
@@ -195,18 +200,35 @@
 
                                             </p>
                                             <div class="input-group-append ml-3">
-                                                <button type="submit"
-                                                    class="btn btn-sm btn-secondary btn-block">Adcionar
+                                                <button type="submit" class="btn btn-sm btn-secondary btn-block">Enviar
                                                     imagem</button>
 
                                             </div>
                                         </div>
-
-
-
                                     </div>
                                 </div>
                             </form>
+                            <div class="row justify-content-center bg-light">
+                                <div class="col-md-3">
+                                    <table class="table table-striped" id="">
+                                        <thead>
+                                            <tr>
+                                                <th>Imagens adicionadas:</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for image in images %}
+                                            <tr>
+                                                <th scope="row"><a href="{{image.image.url}}">{{image.filename}}</a></th>
+                                                <th><a href="{% url 'remove_test_image' test.id image.id%}"><i class="fas fa-trash-alt"></i></a></th>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-9 mb-2 mt-2"></div>
+                            </div>
                         </div>
                     </div> <!-- row.// -->
                 </div> <!-- card-body .// -->

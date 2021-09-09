@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import Account
 from client.models import Client
+import os
 
 test_status = (
     ('Finalizado', 'Finalizado'),
@@ -54,3 +55,6 @@ class TestImages(models.Model):
 
     def __str__(self) -> str:
         return self.test.product_tested
+
+    def filename(self):
+        return os.path.basename(self.image.name)

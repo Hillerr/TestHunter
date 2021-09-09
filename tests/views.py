@@ -12,7 +12,8 @@ from .forms import TestForm, TestImageForm
 def new_test(request):
     if request.method == 'POST':
         try:
-            save_test(request)
+            test = Test()
+            save_test(request, test)
         except Exception as ex:
             messages.error(request, ex)
             return redirect('new_test')
@@ -86,16 +87,22 @@ def edit_test(request, test_id):
 
     if request.method == 'POST':
         try:
-            save_test(request)
+            save_test(request, test)
         except Exception as ex:
             messages.error(request, ex)
 
         messages.success(request, 'Teste editado com sucesso')
+
         return redirect('test_detail', test_id)
 
+    form = TestForm(initial={'test_type': test.test_type})
+    images = TestImages.objects.filter(test_id=test_id)
+
     context = {
+        'form': form, 
         'test': test,
-        'image_form': TestImageForm()
+        'image_form': TestImageForm(),
+        'images': images
     }
 
     return render(request,'tests/test-edit.html', context)
@@ -128,10 +135,8 @@ def finish_test(request):
 def add_test_image(request, test_id):
     if request.method == 'POST':
         form = TestImageForm(request.POST, request.FILES)
-        print(request.FILES)
 
         if form.is_valid():
-            print('here')
             test_image = TestImages()
             test_image.test = Test.objects.get(id=test_id)
             test_image.image = request.FILES['image']
@@ -139,6 +144,12 @@ def add_test_image(request, test_id):
 
     return redirect('edit_test', test_id)
 
+
+@login_required(login_url='login')
+def remove_test_image(request, test_id, image_id):
+    image = TestImages.objects.get(id=image_id)
+    image.delete()
+    return redirect('edit_test', test_id)
 
 
 

@@ -11,4 +11,5 @@ urlpatterns = [
     path('finish_test/', views.finish_test, name='finish_test'),
 
     path('add_test_image/<int:test_id>', views.add_test_image, name='add_test_image'),
+    path('remove_test_image/<int:test_id>/<int:image_id>', views.remove_test_image, name='remove_test_image'),
 ]

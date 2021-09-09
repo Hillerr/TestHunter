@@ -1,6 +1,7 @@
 import datetime
 from .models import Test
 from client.models import Client
+from .forms import TestForm
 
 
 def validate_date(test, request):
@@ -66,8 +67,10 @@ def validate_grades(test, client, request):
     client.grade = round(client_grade, 2)
 
 
-def save_test(request):
-        test = Test()
+
+
+def save_test(request, test):
+        
         test.user = request.user
         test.product_tested = request.POST['product_tested']
         client_code = request.POST['client_code']
@@ -90,6 +93,12 @@ def save_test(request):
         if request.POST['quantity'] != '':
                 test.quantity = request.POST['quantity']
     
+        test_form = TestForm(request.POST)
+
+        if test_form.is_valid():
+            print('valid form')
+            test.test_type = test_form.cleaned_data['test_type']
+
         validate_grades(test, client, request)
 
         client.save()
