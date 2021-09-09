@@ -11759,3 +11759,8 @@ ul.thumb li img{
 .link-gray:hoover{
   color: rgb(221, 214, 214);
 }
+
+.img-carousel{
+    width: 50px;
+    height: auto
+}

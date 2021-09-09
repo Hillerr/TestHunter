@@ -68,10 +68,28 @@ def test_detail(request, test_id):
     else:
         creator = False
 
+    test_images = TestImages.objects.filter(test_id=test_id)
+    test_images_count = test_images.count()
+
+    if test_images:
+        first_image = test_images[0]
+
+        if len(test_images) > 1:
+            test_images = test_images[1:]
+        else:
+            test_images = None
+    else:
+        first_image = None
+
+    print(test_images)
+
     context = {
         'test': test,
         'tests': tests,
-        'creator': creator
+        'creator': creator,
+        'test_images': test_images,
+        'first_image': first_image,
+        'test_images_count': test_images_count
     }
 
     return render(request, 'tests/test-detail.html', context)
