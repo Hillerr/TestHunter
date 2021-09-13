@@ -8,39 +8,57 @@
     <hr>
     <div class="row">
         <div class="col-md-3">
-            <div class="card bg-light shadow-sm mb-5" style="max-width: 18rem;">
-                <div class="card-header">Clientes Cadastrados</div>
+            <div class="card bg-light shadow-sm mb-5 text-center" style="max-width: 18rem;">
+                <div class="card-header"> <strong>Meus Clientes Cadastrados</strong> </div>
                 <div class="card-body text-dark">
                     <h2>{{clients_count}}</h2>
-                    <a href="{% url 'my_clients' %}">
-                        <i class="fa fa-eye"></i> Meus clientes
-                    </a><br>
-                    <a href="{% url 'new_client' %}"><i class="fa fa-user"></i> Adicionar cliente</a>
+                    <div class="row text-align-center">
+                        <div class="btn-group-vertical">
+                            <a href="{% url 'my_clients' %}" class="btn btn-outline-secondary">
+                                <i class="fa fa-eye"></i> Meus clientes
+                            </a>
+                            <a href="{% url 'new_client' %}" class="btn btn-outline-secondary">
+                                <i class="fa fa-user"></i> Adicionar cliente
+                            </a>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
         <div class="col-md-3">
-            <div class="card bg-light shadow-sm mb-5" style="max-width: 18rem;">
-                <div class="card-header">Testes finalizados</div>
+            <div class="card bg-light shadow-sm mb-5 text-center" style="max-width: 18rem;">
+                <div class="card-header"> <strong>Testes finalizados</strong> </div>
                 <div class="card-body text-dark">
                     <h2>{{tests_count}}</h2>
-                    <a href="{% url 'my_tests' %}">
-                        <i class="fa fa-eye"></i> Meus testes
-                    </a><br>
-                    <a href="{% url 'new_test' %}"><i class="fas fa-weight"></i> Adicionar teste</a>
+                    <div class="row text-align-center">
+                        <div class="btn-group-vertical">
+                            <a href="{% url 'my_tests' %}" class="btn btn-outline-secondary">
+                                <i class="fa fa-eye"></i> Meus testes
+                            </a>
+                            <a href="{% url 'new_test' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-weight"></i> Adicionar teste</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card bg-light shadow-sm mb-5" style="max-width: 18rem;">
-                <div class="card-header">Testes em andamento</div>
+            <div class="card bg-light shadow-sm mb-5 text-center" style="max-width: 18rem;">
+                <div class="card-header"> <strong>Testes em andamento</strong> </div>
                 <div class="card-body text-dark">
                     <h2>{{unfinished_tests_count}}</h2>
-                    <a href="{% url 'my_unfinished_tests' %}">
-                        <i class="fa fa-eye"></i> Meus testes em andamento
-                    </a><br>
-                    <a href="{% url 'new_test' %}"><i class="fas fa-weight"></i> Adicionar teste</a>
+                    <div class="row text-align-center">
+                        <div class="btn-group-vertical">
+                            <a href="{% url 'my_unfinished_tests' %}" class="btn btn-outline-secondary">
+                                <i class="fa fa-eye"></i> Meus testes em andamento
+                            </a>
+                            <a href="{% url 'new_test' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-weight"></i> Adicionar teste
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,7 +84,8 @@
                 <tbody>
                     {% for client in clients %}
                     <tr>
-                        <th scope="row"><a class="link-dark text-decoration-none" href="{% url 'client_detail' client.id %}">{{client.name}}</a></td>
+                        <th scope="row"><a class="link-dark text-decoration-none"
+                                href="{% url 'client_detail' client.id %}">{{client.name}}</a></td>
                         <td>{{client.business}}</td>
                         <td>{{client.state}}
                         <td>{{client.city}}</td>
@@ -99,8 +118,10 @@
                 <tbody>
                     {% for test in tests %}
                     <tr>
-                        <th scope="row"><a href="{% url 'test_detail' test.id %}" class="link-dark text-decoration-none">{{test.id}}</a></td>
-                        <th scope="row"><a href="#" class="link-light text-decoration-none">{{test.product_tested}}</a></td>
+                        <th scope="row"><a href="{% url 'test_detail' test.id %}"
+                                class="link-dark text-decoration-none">{{test.id}}</a></td>
+                        <th scope="row"><a href="#" class="text-decoration-none" style="color: gray;">{{test.product_tested}}</a>
+                            </td>
                         <td>{{test.client}}</td>
                         <td>{{test.start_date}}</td>
                         <td>{{test.end_date}}</td>

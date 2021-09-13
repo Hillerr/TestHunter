@@ -4,7 +4,16 @@
 
 
 <div class="container-fluid px-4">
-    <h1 class="h2 mt-4">{{page_name}}</h1>
+    <div class="row mt-4">
+        <div class="col">
+            <h1 class="h2">{{page_name}}</h1>
+        </div>
+        <div class="col start-end text-end">
+            <a href="{% url 'new_test' %}" class="btn btn-primary">
+                <i class="far fa-plus-square"></i> Novo Teste
+            </a>
+        </div>
+    </div>
     <hr>
     <div class="card shadow-sm bg-light mb-5">
         <div class="card-header">
