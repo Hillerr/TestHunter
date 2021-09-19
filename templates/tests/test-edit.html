@@ -162,7 +162,40 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row mb-2 mt-3">
+                                    <h6>Sua avaliação em relação ao tempo de instalação:</h6>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="form-group col-md-5">
+                                        <label for="customRange3" class="form-label">Nota</label>
+                                        <input name="ti_range" type="range" class="form-range" min="0" max="5"
+                                            step="0.5" id="ti_range" oninput="update_grade('ti_range', 'ti_grade')"
+                                            required value="{{test.ti_grade}}">
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <h2 id="ti_grade"></h2>
+                                        <script>
+                                            update_grade('ti_range', 'ti_grade')
+                                        </script>
+                                    </div>
+                                    <div class="row mb-4">
+                                        <div class="form-group col-md-12">
+                                            <label>Comentários</label>
+                                            <textarea name="ti_comments" rows="4" placeholder="Sua opinião"
+                                                class="form-control" maxlength="1000"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                                 {% endlocalize %}
+
+                                <div class="row mb-3 mt-3">
+                                    <div class="form-group col-md-12">
+                                        <label><strong>Cenário de instalação do produto</strong></label>
+                                        <textarea name="scenario" rows="4" placeholder="Descreva o cenário de instalação do produto"
+                                            class="form-control" maxlength="1000"></textarea>
+                                    </div>
+                                </div>
 
                                 <div class="row mb-3 mt-3">
                                     <div class="form-group col-md-12">
@@ -173,8 +206,8 @@
                                 </div>
 
                                 <div class="container">
-                                    <div class="row">
-                                        <div class="col text-center">
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-3">
                                             <button type="submit" class="btn btn-primary btn-block">Salvar
                                                 Alterações</button>
                                         </div>

@@ -30,22 +30,26 @@ def validate_grades(test, client, request):
     tk_grade = float(request.POST['tk_range'])
     tr_grade = float(request.POST['tr_range'])
     fb_grade = float(request.POST['fb_range'])
+    ti_grade = float(request.POST['ti_range'])
 
-    for param in [tk_grade, tr_grade, fb_grade]:
+    for param in [tk_grade, tr_grade, fb_grade, ti_grade]:
         if param < 0 or param > 5:
             raise ValueError("As notas devem estar entre 0 e 5")
 
     test.tk_grade = tk_grade
     test.tr_grade = tr_grade
     test.fb_grade = fb_grade
+    test.ti_grade = ti_grade
     test.tk_comments = request.POST['tk_comments']
     test.tr_comments = request.POST['tr_comments']
     test.fb_comments = request.POST['fb_comments']
+    test.ti_comments = request.POST['ti_comments']
 
-    final_grade = (tk_grade + tr_grade + fb_grade)/3
+    final_grade = (tk_grade + tr_grade + fb_grade + ti_grade)/3
     test.final_grade = round(final_grade, 2)
     test.final_comments = request.POST['final_comments']
     test.contract_id = request.POST['contract_id']
+    test.scenario = request.POST['scenario']
 
     tests_cl = Test.objects.filter(client_id=client).order_by('-created_at')
     n_tests = tests_cl.count()

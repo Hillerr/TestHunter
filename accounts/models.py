@@ -38,12 +38,26 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+UNITS = (
+    ('A', 'A'),
+    ('B', 'B'),
+    ('C', 'C')
+)
+
+SEGMENTS = (
+    ('1', '1'),
+    ('2', '2'),
+    ('3', '3')
+)
 
 class Account(AbstractBaseUser):
     first_name = models.CharField(max_length=20, verbose_name='Nome')
     last_name = models.CharField(max_length=20, verbose_name='Sobrenome')
     username = models.CharField(max_length=20, verbose_name='Nome de usuário', unique=True)
     email = models.EmailField(max_length=50, verbose_name='E-mail', unique=True)
+
+    unit = models.CharField(verbose_name="Unidade", max_length=20, choices=UNITS, default='A')
+    segment = models.CharField(verbose_name="Segmento", max_length=20, choices=SEGMENTS, default='1')
 
     #required
     date_joined = models.DateTimeField(auto_now_add=True, verbose_name='Data de criação')

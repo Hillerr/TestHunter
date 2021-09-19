@@ -18,7 +18,6 @@ def login(request):
         if user is not None:
 
             # Get user params
-
             auth.login(request, user)
 
             return redirect('dashboard')
@@ -26,7 +25,6 @@ def login(request):
         else:
             messages.error(request, 'Email ou senha incorretos')
             return redirect('login')
-
 
     return render(request, 'accounts/login.html')
 
