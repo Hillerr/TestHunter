@@ -45,7 +45,7 @@ def validate_grades(test, client, request):
     test.fb_comments = request.POST['fb_comments']
     test.ti_comments = request.POST['ti_comments']
 
-    final_grade = (tk_grade + tr_grade + fb_grade + ti_grade)/3
+    final_grade = (tk_grade + tr_grade + fb_grade + ti_grade)/4
     test.final_grade = round(final_grade, 2)
     test.final_comments = request.POST['final_comments']
     test.contract_id = request.POST['contract_id']

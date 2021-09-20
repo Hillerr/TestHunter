@@ -44,7 +44,8 @@ def tests(request):
 def my_tests(request):
     tests = Test.objects.filter(user_id=request.user.id).order_by('-created_at')
     context = {
-        'tests': tests
+        'tests': tests,
+        'page_name': 'Meus Testes'
     }
     return render(request, 'tests/tests-table.html', context)
 
@@ -53,7 +54,8 @@ def my_tests(request):
 def my_unfinished_tests(request):
     tests = Test.objects.filter(user_id=request.user.id, status='Em andamento').order_by('-created_at')
     context = {
-        'tests': tests
+        'tests': tests,
+        'page_name': 'Meus testes em andamento'
     }
     return render(request, 'tests/tests-table.html', context)
 
@@ -132,6 +134,23 @@ def finish_test(request):
         test.status = 'Finalizado'
         test.save()
         messages.success(request, f"Teste do produto {test.product_tested} finalizado com sucesso")
+
+    return redirect('my_tests')
+
+
+@login_required(login_url='login')
+def remove_test(request):
+    if request.method == 'POST':
+        test_id = request.POST['test_id']
+
+        try:
+            test = Test.objects.get(id=test_id)
+        except Test.DoesNotExist:
+            messages.error(request, f"Teste com id {test_id} não foi encontrado")
+            return redirect('test_detail', test_id)
+
+        test.delete()
+        messages.success(request, f"Teste do produto {test.product_tested} removido com sucesso")
 
     return redirect('my_tests')
 

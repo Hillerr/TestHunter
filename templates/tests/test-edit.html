@@ -10,9 +10,10 @@
     <div class="row justify-content-center">
         <div class="col-lg-12 mt-5">
             <h2>Editar teste: {{test.product_tested}}</h2>
+            <div class="row-fluid">
+                <hr>
+            </div>
             <div class="card shadow-sm rounded-lg">
-                <header class="card-header">
-                    <strong class="d-inline-block mr-3">Editar Teste</strong>
                     {% include 'includes/alerts.html' %}
                     {% if client_form.errors %}
                     {% for field in client_form %}
@@ -21,7 +22,6 @@
                     {% endfor %}
                     {% endfor %}
                     {% endif %}
-                </header>
                 <div class="card-body bg-light">
                     <div class="row mb-2">
                         <div class="col-md-12">

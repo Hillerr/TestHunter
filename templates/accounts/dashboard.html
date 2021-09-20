@@ -7,18 +7,18 @@
     <h1 class="h2 mt-4">Dashboard</h1>
     <hr>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-lg-4 col-md-6">
             <div class="card bg-light shadow-sm mb-5 text-center" style="max-width: 18rem;">
-                <div class="card-header"> <strong>Meus Clientes Cadastrados</strong> </div>
+                <div class="card-header bg-secondary"> <strong class="text-light">Meus Clientes Cadastrados</strong> </div>
                 <div class="card-body text-dark">
                     <h2>{{clients_count}}</h2>
                     <div class="row text-align-center">
                         <div class="btn-group-vertical">
                             <a href="{% url 'my_clients' %}" class="btn btn-outline-secondary">
-                                <i class="fa fa-eye"></i> Meus clientes
+                                <i class="fa fa-eye"></i> Visualizar
                             </a>
                             <a href="{% url 'new_client' %}" class="btn btn-outline-secondary">
-                                <i class="fa fa-user"></i> Adicionar cliente
+                                <i class="fa fa-user"></i> Novo cliente
                             </a>
 
                         </div>
@@ -26,36 +26,36 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-lg-4 col-md-6">
             <div class="card bg-light shadow-sm mb-5 text-center" style="max-width: 18rem;">
-                <div class="card-header"> <strong>Testes finalizados</strong> </div>
+                <div class="card-header bg-secondary"> <strong class="text-light">Testes finalizados</strong> </div>
                 <div class="card-body text-dark">
                     <h2>{{tests_count}}</h2>
                     <div class="row text-align-center">
                         <div class="btn-group-vertical">
                             <a href="{% url 'my_tests' %}" class="btn btn-outline-secondary">
-                                <i class="fa fa-eye"></i> Meus testes
+                                <i class="fa fa-eye"></i> Visualizar
                             </a>
                             <a href="{% url 'new_test' %}" class="btn btn-outline-secondary">
-                                <i class="fas fa-weight"></i> Adicionar teste</a>
+                                <i class="fas fa-weight"></i> Novo teste</a>
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-lg-4 col-md-6">
             <div class="card bg-light shadow-sm mb-5 text-center" style="max-width: 18rem;">
-                <div class="card-header"> <strong>Testes em andamento</strong> </div>
+                <div class="card-header bg-secondary"> <strong class="text-light">Testes em andamento</strong> </div>
                 <div class="card-body text-dark">
                     <h2>{{unfinished_tests_count}}</h2>
                     <div class="row text-align-center">
-                        <div class="btn-group-vertical">
-                            <a href="{% url 'my_unfinished_tests' %}" class="btn btn-outline-secondary">
-                                <i class="fa fa-eye"></i> Meus testes em andamento
+                        <div class="col-md-12 btn-group-vertical flex-wrap">
+                            <a href="{% url 'my_unfinished_tests' %}" class="btn btn-outline-secondary btn-block">
+                                <i class="fa fa-eye"></i> Visualizar 
                             </a>
                             <a href="{% url 'new_test' %}" class="btn btn-outline-secondary">
-                                <i class="fas fa-weight"></i> Adicionar teste
+                                <i class="fas fa-weight"></i> Novo teste
                             </a>
                         </div>
                     </div>
@@ -65,9 +65,9 @@
     </div>
     <hr>
     <div class="card shadow-sm bg-light mb-2">
-        <div class="card-header">
+        <div class="card-header bg-secondary text-light">
             <i class="fas fa-table me-1"></i>
-            Top 10 clientes
+            Meus top 5 clientes
         </div>
         <div class="card-body">
             <table class="table table-striped table-sm">
@@ -99,7 +99,7 @@
     </div>
     <hr>
     <div class="card shadow-sm bg-light mb-5">
-        <div class="card-header">
+        <div class="card-header bg-secondary text-light">
             <i class="fas fa-table me-1"></i>
             Meus últimos testes
         </div>
@@ -110,6 +110,7 @@
                         <th>ID do teste</th>
                         <th>Produto testado</th>
                         <th>Cliente</th>
+                        <th>Segmento</th>
                         <th>Data de início</th>
                         <th>Data de finalização</th>
                         <th>Nota</th>
@@ -118,11 +119,10 @@
                 <tbody>
                     {% for test in tests %}
                     <tr>
-                        <th scope="row"><a href="{% url 'test_detail' test.id %}"
-                                class="link-dark text-decoration-none">{{test.id}}</a></td>
-                        <th scope="row"><a href="#" class="text-decoration-none" style="color: gray;">{{test.product_tested}}</a>
-                            </td>
-                        <td>{{test.client}}</td>
+                        <th scope="row"><a href="{% url 'test_detail' test.id %}" class="link-dark text-decoration-none">Teste {{test.id}}</a></th>
+                        <td scope="row"><a href=""></a>{{test.product_tested}}</td>
+                        <td scope="row"><a href="{% url 'client_detail' test.client.id %}" class="link-dark text-decoration-none">{{test.client}}</a></td>
+                        <td>{{test.user.segment}}</td>
                         <td>{{test.start_date}}</td>
                         <td>{{test.end_date}}</td>
                         <td>{{test.final_grade}}</td>

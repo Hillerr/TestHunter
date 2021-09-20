@@ -84,10 +84,11 @@ def dashboard(request):
         else:
             clients_count = 0
 
-        tests = Test.objects.filter(user_id=user.id, status='Finalizado')
-        tests_count = tests.count()
+        tests = Test.objects.filter(user_id=user.id)
+        finished_tests = Test.objects.filter(status='Finalizado')
+        tests_count = finished_tests.count()
 
-        unfinished_tests = Test.objects.filter(user_id=user.id, status='Em andamento')
+        unfinished_tests = tests.filter(status='Em andamento')
         unfinished_tests_count = unfinished_tests.count()
 
         latest_tests = tests.order_by('-created_at')

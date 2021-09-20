@@ -2,60 +2,88 @@
 {% block content %}
 
 <div class="container">
-    <div class="row justify-content-center mt-3 bg-light pt-3">
+    <div class="row justify-content-center mt-3 bg-light pt-3 pb-3">
         <div class="col-lg-11">
 
             <div class="row text-center pl-0 pr-0">
                 <h2>Teste: {{test.product_tested}}</h2>
-                <hr>
+                <div class="row-fluid">
+                    <hr>
+                </div>
             </div>
 
-            <div class="row mb-2 mt-2">
-                <div class="col-md-12 mb-2">
+            <div class="row ">
+                <div class="col-md-12">
                     {% include 'includes/alerts.html' %}
                     <h4>Dados do teste:</h4>
                 </div>
+                <div class="row-fluid">
+                    <hr>
+                </div>
                 <div class="col-md-12">
-                    <div class="row mb-3">
-                        <div class="form-group col-md-6 ">
+                    <div class="row mb-2">
+                        <div class="form-group col-md-4 ">
                             <label>Nome do produto: </label>
-                            {{test.product_tested}}
+                            <strong>{{test.product_tested}}</strong>
                         </div>
-                        <div class="form-group col-md-6 ">
+                        <div class="form-group col-md-4 ">
                             <label>Nome do cliente: </label>
-                            {{test.client}}
+                            <strong>{{test.client}}</strong>
                         </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="form-group col-md-6 ">
-                            <label>Cadastrado por: </label>
-                            {{test.user.username}}
-                        </div>
-                        <div class="form-group col-md-6 ">
+                        <div class="form-group col-md-4 ">
                             <label>ID do contrato: </label>
-                            {{test.contract_id}}
+                            <strong>{{test.contract_id}}</strong>
                         </div>
                     </div>
-                    <div class="row mb-3">
-                        <div class="form-group col-md-6 ">
-                            <label>Data de início: </label>
-                            {{test.start_date}}
+                    <div class="row mb-2">
+                        <div class="form-group col-md-4 ">
+                            <label>Cadastrado por: </label>
+                            <strong>{{test.user.username}}</strong>
                         </div>
-                        <div class="form-group col-md-6 ">
+                        <div class="form-group col-md-4 ">
+                            <label>Unidade: </label>
+                            <strong>{{test.user.unit}}</strong>
+                        </div>
+                        <div class="form-group col-md-4 ">
+                            <label>Segmento: </label>
+                            <strong>{{test.user.segment}}</strong>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="form-group col-md-4 ">
+                            <label>Data de início: </label>
+                            <strong>{{test.start_date}}</strong>
+                        </div>
+                        <div class="form-group col-md-4 ">
                             <label>Data de finalização: </label>
-                            {{test.end_date}}
+                            <strong>{{test.end_date}}</strong>
+                        </div>
+                        <div class="form-group col-md-4 ">
+                            <label>N° de produtos testados: </label>
+                            <strong>{{test.quantity}}</strong>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <div class="col-md-6 mb-1">
+                        <div class="col-md-4">
                             <label>Status: </label>
-                            {{test.status}}
+                            <strong>{{test.status}}</strong>
                         </div>
-                        <div class="col-md-6 mb-1">
+                        <div class="col-md-4">
+                            <label>Tipo de teste: </label>
+                            <strong>{{test.test_type}}</strong>
+                        </div>
+                        <div class="col-md-4">
                             <label>Responsável técnico: </label>
-                            {{test.technician}}
+                            <strong>{{test.technician}}</strong>
                         </div>
+                    </div>
+                    <div class="row-fluid">
+                        <hr>
+                    </div>
+                    <div class="row-fluid">
+                        <h4>Avaliação:</h4>
+                        <hr>
                     </div>
                     <div class="row mb-3 mt-1">
                         <h5>Conhecimento técnico do cliente</h5>
@@ -103,82 +131,95 @@
                     </div>
 
                     <div class="row mb-3 mt-1">
-                        <h5>Cenário de instalação do produto</h5>
-                        <div class="col-md-12 mb-1 ">
-                            <p>{{test.scenario}}</p>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3 mt-1">
-                        <h4>Nota final</h4>
+                        <h4>Nota final:</h4>
                         <div class="col-md-12 mb-1 ">
                             <strong style="font-size: 1.5em;">{{test.final_grade}}</strong>
 
                         </div>
-                        <div class="col-md-12 mb-1">
-                            <label for="">Comentários: </label>
+                    </div>
+                    <div class="row-fluid">
+                        <hr>
+                    </div>
+                    <div class="row-fluid">
+                        <h4>Cenário de instalação:</h4>
+                        <hr>
+                    </div>
+                    <div class="row mb-3 mt-1">
+                        <div class="row mb-3 mt-1">
+                            <h5>Descrição:</h5>
+                            <div class="col-md-12 mb-1 ">
+                                <p>{{test.scenario}}</p>
+                            </div>
+                        </div>
+                        {% if test_images %}
+                        <div class="container">
+                            <h5>Imagens do teste:</h5>
+                            <div class="row text-center bg-light">
+                                {% for image in test_images %}
+                                <div class="col-lg-3 col-md-12 col-sm-12 mb-1">
+                                    <div class="card">
+                                        <a id="{{image.filename}}" href="{{image.image.url}}" , target="_blank">
+                                            <img class="card-image-top img-fluid"
+                                                style="width: 100%; height: 15vw; object-fit: cover; max-height: 180px;"
+                                                src="{{image.image.url}}" alt="Card image cap">
+                                        </a>
+                                        <div class="card-body d-flex flex-column">
+                                            <p>{{image.filename}}</p>
+                                            <a download="{{image.filename}}" href="{{image.image.url}}"
+                                                class="btn btn-secondary mt-auto">Download</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <div class="col-md-12 mb-1 mt-3">
+                            <h5>Comentários finais:</h5>
                             {{test.final_comments}}
                         </div>
                     </div>
-                </div>
 
-                {% if test_images %}
-                <div class="container">
-                    <h5>Imagens do teste:</h5>
-                    <div class="row text-center bg-light">
-                        {% for image in test_images %}
-                        <div class="col-lg-3 col-md-6 col-sm-6 mb-1">
-                            <div class="card" style="width: 300px; height: 350px;">
-                                <a id="{{image.filename}}" href="{{image.image.url}}", target="_blank">
-                                    <img class="card-image-top img-fluid"
-                                        style="width: 100%; height: 15vw; object-fit: cover; max-height: 180px;"
-                                        src="{{image.image.url}}" alt="Card image cap">
-                                </a>
-                                <div class="card-body d-flex flex-column">
-                                    <p>{{image.filename}}</p>
-                                    <a download="{{image.filename}}" href="{{image.image.url}}"
-                                        class="btn btn-secondary mt-auto">Download</a>
-                                </div>
+                    {% if creator == True %}
+                    <div class="container">
+                        <div class="row mt-5">
+                            {% if test.status == "Em andamento" %}
+                            <div class="col-md-2 text-center">
+                                <form action="{% url 'edit_test' test.id %}" method="get">
+                                    <button type="submit" class="btn btn-secondary btn-block">Editar
+                                        Teste</button>
+                                </form>
                             </div>
-                        </div>
-                        {% endfor %}
 
+                            <div class="col-md-2 text-center">
+                                <form action="{% url 'finish_test' %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary btn-block" value="{{test.id}}"
+                                        name="test_id">Encerrar
+                                        Teste</button>
+                                </form>
+                            </div>
+
+                            <div class="col-md-2 text-center">
+                                <form action="{% url 'remove_test' %}" method="POST">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger btn-block" value="{{test.id}}"
+                                        name="test_id">Encerrar
+                                        Teste</button>
+                                </form>
+                            </div>
+                            {% endif %}
+                        </div>
                     </div>
-                </div>
-                {% endif %}
+                    {% endif %}
 
+                </div> <!-- row.// -->
 
-
-                {% if creator == True %}
-                <div class="container">
-                    <div class="row mt-5">
-                        {% if test.status == "Em andamento" %}
-                        <div class="col-md-2 text-center">
-                            <form action="{% url 'edit_test' test.id %}" method="get">
-                                <button type="submit" class="btn btn-secondary btn-block">Editar
-                                    Teste</button>
-                            </form>
-                        </div>
-
-                        <div class="col-md-2 text-center">
-                            <form action="{% url 'finish_test' %}" method="POST">
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-primary btn-block" value="{{test.id}}"
-                                    name="test_id">Encerrar
-                                    Teste</button>
-                            </form>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-                {% endif %}
-
-            </div> <!-- row.// -->
-
+            </div>
         </div>
     </div>
-</div>
-<div class="container">
     <div class="row justify-content-center mt-3 bg-light pt-3">
         <div class="col-lg-11">
             <div class="col-md-12 mb-2 mt-2">
@@ -186,20 +227,26 @@
                 <table class="table table-striped" id="clientTestsTable">
                     <thead>
                         <tr>
-                            <th>Produto</th>
+                            <th>ID do teste</th>
+                            <th>Produto testado</th>
                             <th>Cliente</th>
+                            <th>Segmento</th>
                             <th>Data de início</th>
                             <th>Data de finalização</th>
+                            <th>Status</th>
                             <th>Nota</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for test in tests %}
                         <tr>
-                            <th scope="row"><a href="#">{{test.product_tested}}</a></td>
-                            <td>{{test.client}}
+                            <th scope="row"><a href="{% url 'test_detail' test.id %}" class="link-dark text-decoration-none">Teste {{test.id}}</a></th>
+                            <td scope="row">{{test.product_tested}}</td>
+                            <td scope="row"><a href="{% url 'client_detail' test.client.id %}" class="text-decoration-none">{{test.client}}</a></td>
+                            <td>{{test.user.segment}}</td>
                             <td>{{test.start_date}}</td>
                             <td>{{test.end_date}}</td>
+                            <td>{{test.status}}</td>
                             <td>{{test.final_grade}}</td>
                         </tr>
                         {% endfor %}
@@ -208,6 +255,4 @@
             </div>
         </div>
     </div>
-
-</div>
-{% endblock %}
+    {% endblock %}
