@@ -21,6 +21,7 @@ def new_test(request):
         messages.success(request, 'Teste cadastrado com sucesso')
         return redirect('new_test')
     
+    x = 1 
 
     test_choices = TestForm()
     context = {
