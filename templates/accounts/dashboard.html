@@ -110,9 +110,12 @@
                         <th>ID do teste</th>
                         <th>Produto testado</th>
                         <th>Cliente</th>
+                        <th>Tipo</th>
                         <th>Segmento</th>
+                        <th>Data de criação</th>
                         <th>Data de início</th>
                         <th>Data de finalização</th>
+                        <th>Status</th>
                         <th>Nota</th>
                     </tr>
                 </thead>
@@ -122,9 +125,12 @@
                         <th scope="row"><a href="{% url 'test_detail' test.id %}" class="link-dark text-decoration-none">Teste {{test.id}}</a></th>
                         <td scope="row"><a href=""></a>{{test.product_tested}}</td>
                         <td scope="row"><a href="{% url 'client_detail' test.client.id %}" class="link-dark text-decoration-none">{{test.client}}</a></td>
+                        <td>{{test.test_type}}</td>
                         <td>{{test.user.segment}}</td>
+                        <td>{{test.created_at}}</td>
                         <td>{{test.start_date}}</td>
                         <td>{{test.end_date}}</td>
+                        <td>{{test.status}}</td>
                         <td>{{test.final_grade}}</td>
                     </tr>
                     {% endfor %}

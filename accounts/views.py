@@ -85,7 +85,7 @@ def dashboard(request):
             clients_count = 0
 
         tests = Test.objects.filter(user_id=user.id)
-        finished_tests = Test.objects.filter(status='Finalizado')
+        finished_tests = Test.objects.filter(status='Finalizado', user_id=user.id)
         tests_count = finished_tests.count()
 
         unfinished_tests = tests.filter(status='Em andamento')

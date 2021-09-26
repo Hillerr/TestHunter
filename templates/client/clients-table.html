@@ -18,7 +18,7 @@
     <hr>
 
     <div class="card shadow-sm bg-light mb-5">
-        <div class="card-header">
+        <div class="card-header bg-secondary text-light">
             <i class="fas fa-table me-1"></i>
             {{page_name}}
         </div>
@@ -28,6 +28,7 @@
                     <tr>
                         <th>Nome</th>
                         <th>Tipo de cliente</th>
+                        <th>Segmento</th>
                         <th>Estado</th>
                         <th>Cidade</th>
                         <th>Email</th>
@@ -37,8 +38,10 @@
                 <tbody>
                     {% for client in clients %}
                     <tr>
-                        <th scope="row"><a href="{% url 'client_detail' client.id %}">{{client.name}}</a></td>
+                        <th scope="row"><a class="link-dark text-decoration-none" 
+                            href="{% url 'client_detail' client.id %}">{{client.name}}</a></td>
                         <td>{{client.business}}</td>
+                        <td>{{client.user.segment}}</td>
                         <td>{{client.state}}
                         <td>{{client.city}}</td>
                         <td>{{client.email}}</td>
