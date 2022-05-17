@@ -1,7 +1,3 @@
-<p align="center">
-    <img src="./static/images/logo.png" alt="Unform" />
-</p>
-
 <h1 align="center">TestHunter Web App</h1>
 
 <h1 align="center">
